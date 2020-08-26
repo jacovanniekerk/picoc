@@ -1,0 +1,21 @@
+node {
+    shape: circle;
+	size: 25px, 25px;
+	fill-color: black;
+}
+
+node.empty {
+	fill-color: grey;
+}
+
+node.root {
+	fill-color: red;
+}
+
+node.internal {
+	fill-color: blue;
+}
+
+node.external {
+	fill-color: green;
+}

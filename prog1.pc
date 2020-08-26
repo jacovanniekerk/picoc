@@ -1,0 +1,13 @@
+{
+  // This prints all Fibonacci numbers under 1000
+  int a,b;
+  a=b=1;
+  int tmp;
+
+  while (a < 1000) {
+    out(a);
+    tmp=a+b;
+    a=b;
+    b=tmp;
+    }
+}
