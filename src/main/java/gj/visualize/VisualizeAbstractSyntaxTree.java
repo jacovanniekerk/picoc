@@ -5,7 +5,6 @@ import gj.picoc.Parser;
 import gj.picoc.Scanner;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
-import org.graphstream.ui.layout.Layout;
 import org.graphstream.ui.layout.springbox.SpringBox;
 import org.graphstream.ui.swingViewer.Viewer;
 
@@ -13,10 +12,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
-import java.util.Stack;
 
 public class VisualizeAbstractSyntaxTree {
 
@@ -27,7 +23,7 @@ public class VisualizeAbstractSyntaxTree {
             return;
         }
 
-        if (ast.getType() == Node.NodeType.PROG) {
+        if (ast.getNodeType() == Node.NodeType.PROG) {
             graph.getNode(id).addAttribute("ui.class", "root");
         } else if (ast.isLeaf()) {
             graph.getNode(id).addAttribute("ui.class", "external");
@@ -35,7 +31,7 @@ public class VisualizeAbstractSyntaxTree {
             graph.getNode(id).addAttribute("ui.class","internal");
         }
 
-        String label = ast.getType().toString();
+        String label = ast.getNodeType().toString();
         if (ast.getValue() != null) {
             label = label + ":" + ast.getValue();
         }
@@ -51,8 +47,6 @@ public class VisualizeAbstractSyntaxTree {
     }
 
 
-
-
     public static void visualize(Node ast) throws IOException, URISyntaxException {
         Path file = Path.of(VisualizeAbstractSyntaxTree.class.getResource("graph.css").toURI());
         String css = Files.readString(file);
@@ -63,7 +57,7 @@ public class VisualizeAbstractSyntaxTree {
         graph.addAttribute("ui.antialias");
         construct(ast, "0", graph);
         Viewer viewer = graph.display(false);
-        SpringBox layout = new SpringBox(false,new Random(123));
+        SpringBox layout = new SpringBox(false,new Random(1210));
         viewer.enableAutoLayout(layout);
 
 

@@ -75,7 +75,7 @@ public class Parser {
     private Node listToTree(List<Node> list) {
 
         // Optimisation: If the list contains a single sequence, collapse immediately.
-        if (list.size() == 1 && list.get(0).getType() == Node.NodeType.SEQ) {
+        if (list.size() == 1 && list.get(0).getNodeType() == Node.NodeType.SEQ) {
             return list.get(0);
         }
 
